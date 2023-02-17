@@ -9,6 +9,7 @@ public class Main {
         ex2();
         ex3();
         ex4();
+        ex5();
     }
 
     private static void ex1() { // Range of people
@@ -22,6 +23,7 @@ public class Main {
     }
 
     private static void ex2() { // Average Displacement\
+        System.out.println();
         var cars = new ArrayList<Car>();
         cars = DataRepo.getCarsWithEngines();
         var filterList = cars.stream()
@@ -32,6 +34,7 @@ public class Main {
     }
 
     private static void ex3() { // People Uppercase
+        System.out.println();
         var people = new ArrayList<Person>();
         people = DataRepo.getPeople();
         people.stream()
@@ -42,6 +45,7 @@ public class Main {
     }
 
     private static void ex4() { // Word counter
+        System.out.println();
         var words = new ArrayList<String>();
         words = DataRepo.readFile();
         var wordMap = new HashMap<String, Integer>();
@@ -50,7 +54,13 @@ public class Main {
     }
 
     private static void ex5() { // Sorted word counter
-        // TODO...
-
+        System.out.println();
+        var words = new ArrayList<String>();
+        words = DataRepo.readFile();
+        var wordMap = new HashMap<String, Integer>();
+        words.forEach(word -> wordMap.put(word, wordMap.getOrDefault(word, 0) + 1));
+        List<Map.Entry<String, Integer>> wordList = new LinkedList<>(wordMap.entrySet());
+        Collections.sort(wordList, Map.Entry.comparingByValue());
+        wordList.forEach(word -> System.out.println(word.getKey() + ": " + word.getValue()));
     }
 }
