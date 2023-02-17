@@ -8,8 +8,13 @@ public class Main {
     }
 
     private static void ex1() { // Range of people
-        // TODO...
-
+        var people = DataRepo.getPeople();
+        var ageList = new ArrayList<>();
+        for (Person p : people) {
+            if (p.getAge() >= 20 && p.getAge() <= 40)
+                ageList.add(p);
+        };
+        System.out.println(ageList);
     }
 
     private static void ex2() { // Average Displacement
