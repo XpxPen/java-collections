@@ -18,7 +18,9 @@ public class Main {
     }
 
     private static void ex2() { // Average Displacement
-        // TODO...
+        var cars = DataRepo.getCarsWithEngines();
+        var displacementAverage = new ArrayList<>();
+
 
     }
 
