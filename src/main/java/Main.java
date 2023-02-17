@@ -7,6 +7,7 @@ public class Main {
     public static void main(String[] args) {
         ex1();
         ex2();
+        ex3();
     }
 
     private static void ex1() { // Range of people
@@ -24,14 +25,19 @@ public class Main {
         cars = DataRepo.getCarsWithEngines();
         var filterList = cars.stream()
                 .mapToDouble(c -> c.getEngine().getDisplacment())
-                .summaryStatistics();
-        //.average();
-        System.out.println(Math.round(filterList.getAverage() * 100.0) / 100.0);
+                .summaryStatistics()
+                .getAverage();
+        System.out.println(Math.round(filterList * 100.0) / 100.0);
     }
 
     private static void ex3() { // People Uppercase
-        // TODO...
-
+        var people = new ArrayList<Person>();
+        people = DataRepo.getPeople();
+        people.stream()
+                .forEach(person -> person.setFirstName(person.getFirstName().toUpperCase()));
+        people.stream()
+                .forEach(person -> person.setLastName(person.getLastName().toUpperCase()));
+        System.out.println(people);
     }
 
     private static void ex4() { // Word counter
