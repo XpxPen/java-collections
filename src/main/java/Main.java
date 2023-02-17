@@ -8,6 +8,7 @@ public class Main {
         ex1();
         ex2();
         ex3();
+        ex4();
     }
 
     private static void ex1() { // Range of people
@@ -41,8 +42,11 @@ public class Main {
     }
 
     private static void ex4() { // Word counter
-        // TODO...
-
+        var words = new ArrayList<String>();
+        words = DataRepo.readFile();
+        var wordMap = new HashMap<String, Integer>();
+        words.forEach(word -> wordMap.put(word, wordMap.getOrDefault(word, 0) + 1));
+        wordMap.entrySet().forEach(word -> System.out.println(word.getKey() + " " + word.getValue()));
     }
 
     private static void ex5() { // Sorted word counter
