@@ -8,6 +8,17 @@ public class Main {
     }
 
     private static void ex1() { // Range of people
+        var thePeople = DataRepo.getPeople();
+        var people20to40 = new ArrayList<Person>();
+
+        for (Person person : thePeople){
+            if (person.getAge() >= 20 && person.getAge() <=40){
+                people20to40.add(person);
+            }
+        }
+        for (Person person : people20to40) {
+            System.out.println(person);
+        }
         // TODO...
 
     }
