@@ -33,7 +33,7 @@ public class Main {
             tot++;
         }
         float avg = sum/tot;
-        System.out.println("The average displacement is: " + avg);
+        System.out.println("The average displacement is now: " + avg);
     }
 
     private static void ex3() { // People Uppercase
