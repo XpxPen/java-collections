@@ -18,11 +18,10 @@ public class Main {
     }
 
     private static void ex2() { // Average Displacement
-       ArrayList<Car> cars = DataRepo.getCarsWithEngines();
-        OptionalDouble engines = cars.stream()
-                .mapToDouble(d -> d.getEngine().getDisplacment())
-                .average();
-        System.out.print(engines.getAsDouble());
+        var cars = DataRepo.getCarsWithEngines().stream()
+                .mapToDouble(car -> car.getEngine().getDisplacment())
+                .average().getAsDouble();
+        System.out.println(cars);
        }
 
     private static void ex3() { // People Uppercase
