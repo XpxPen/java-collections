@@ -1,5 +1,7 @@
 import Model.*;
 import Repo.DataRepo;
+
+import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -43,7 +45,7 @@ public class Main {
 
     private static void ex4() { // Word counter
         var pairs = new HashMap<String, Long>();
-        var file = DataRepo.readFile().stream()
+        DataRepo.readFile().stream()
                 .map(f -> pairs.put(f , f.chars().count()))
                 .collect(Collectors.toList());
 
@@ -52,13 +54,12 @@ public class Main {
     }
 
     private static void ex5() { // Sorted word counter
+
         var pairs = new HashMap<String, Long>();
-        var file = DataRepo.readFile().stream()
+        DataRepo.readFile().stream()
                 .map(f -> pairs.put(f , f.chars().count()))
                 .collect(Collectors.toList());
 
-
         System.out.println(pairs);
-
     }
 }
