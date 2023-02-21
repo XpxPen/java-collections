@@ -5,6 +5,9 @@ import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.util.Map.Entry.comparingByValue;
+import static java.util.stream.Collectors.toMap;
+
 public class Main {
     public static void main(String[] args) {
         //ex1();
@@ -55,11 +58,15 @@ public class Main {
 
     private static void ex5() { // Sorted word counter
 
-        var pairs = new HashMap<String, Long>();
+        var pairs = new HashMap<String, Integer>();
         DataRepo.readFile().stream()
-                .map(f -> pairs.put(f , f.chars().count()))
+                .map(p -> pairs.put(p , (int) p.chars().count()))
                 .collect(Collectors.toList());
 
-        System.out.println(pairs);
+        Map<String, Integer> sorted = pairs.entrySet().stream()
+                .sorted(comparingByValue())
+                .collect( toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2, LinkedHashMap::new));
+
+        System.out.println(sorted);
     }
 }
