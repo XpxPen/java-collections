@@ -1,12 +1,17 @@
 import Model.*;
 import Repo.DataRepo;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
-        ex1(); ex2(); ex3(); ex4();
+        ex1();
+        ex2();
+        ex3();
+        ex4();
+        ex5();
     }
 
     private static void ex1() { // Range of people
@@ -15,7 +20,8 @@ public class Main {
         for (Person p : people) {
             if (p.getAge() >= 20 && p.getAge() <= 40)
                 ageList.add(p);
-        };
+        }
+        ;
         System.out.println("Ex1: " + ageList);
     }
 
@@ -34,9 +40,9 @@ public class Main {
     private static void ex3() { // People Uppercase
         var peopleUpper = DataRepo.getPeople();
         peopleUpper.stream().forEach(
-            person -> person.setFirstName(person.getFirstName().toUpperCase()));
+                person -> person.setFirstName(person.getFirstName().toUpperCase()));
         peopleUpper.stream().forEach(
-            person -> person.setLastName(person.getLastName().toUpperCase()));
+                person -> person.setLastName(person.getLastName().toUpperCase()));
         System.out.println("Ex3: " + peopleUpper);
     }
 
@@ -44,7 +50,7 @@ public class Main {
         var words = DataRepo.readFile();
         HashMap<String, Integer> wordCounter = new HashMap<>();
 
-        for (String word : words ) {
+        for (String word : words) {
             var count = wordCounter.get(word);
             if (count == null)
                 wordCounter.put(word, 1);
@@ -56,7 +62,25 @@ public class Main {
     }
 
     private static void ex5() { // Sorted word counter
-        // TODO...
-
+        var words = DataRepo.readFile();
+        HashMap<String, Integer> wordCounter = new HashMap<>();
+        HashMap<String, Integer> sortedWordCounter;
+        for (String word : words) {
+            var count = wordCounter.get(word);
+            if (count == null)
+                wordCounter.put(word, 1);
+            else {
+                wordCounter.put(word, count + 1);
+            }
+        }
+        sortedWordCounter = wordCounter.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors
+                        .toMap(
+                                Map.Entry::getKey,
+                                Map.Entry::getValue,
+                                (e1, e2) -> e1, LinkedHashMap::new)
+                );
+        System.out.println("Ex5: " + sortedWordCounter);
     }
 }
