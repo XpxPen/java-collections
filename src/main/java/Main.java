@@ -10,6 +10,7 @@ public class Main {
     
     public static void main(String[] args) {
         ex5();
+        ex4();
     }
 
     private static void ex1() { // Range of people
